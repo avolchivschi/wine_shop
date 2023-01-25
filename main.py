@@ -200,14 +200,15 @@ try:
 
             order_sql = "INSERT INTO wine_shop.order (customer_id, total_quantity, order_date, required_date, shipped_date, status, comments) VALUES (%s, %s, %s, %s, %s, %s, %s)"
             order_val = [
-                ('1', '13', '2023-01-23', '2023-01-25', '2023-01-25', '3', 'a se livra in a doua jumatate a zilei'),
+                ('1', '13', '2022-01-23', '2023-01-25', '2022-01-25', '3', 'a se livra in a doua jumatate a zilei'),
                 ('3', '90', '2023-01-23', '2023-02-15', '2023-02-15', '1', 'achitare card'),
                 ('2', '3', '2023-01-23', '2023-01-27', '2023-01-27', '2', '-'),
                 ('4', '1', '2022-11-03', '2022-11-05', '2022-11-05', '3', 'livrat cu succes'),
                 ('5', '40', '2023-01-13', '2023-01-15', '2023-01-15', '2', 'rog comanda sa fie lasata la receptie'),
-                ('1', '70', '2021-04-30', '2021-04-30', '2021-04-30', '3', 'null'),
+                ('1', '70', '2022-04-30', '2022-04-30', '2021-04-30', '3', 'null'),
                 ('2', '6', '2023-01-25', '2023-01-25', '2023-01-25', '1', 'rog un apel preventiv'),
-                ('3', '17', '2023-01-03', '2023-01-30', '2023-01-30', '1', '.')
+                ('3', '17', '2023-01-03', '2023-01-30', '2023-01-30', '1', '.'),
+                ('3', '3', '2022-04-06', '2023-04-06', '2023-04-06', '3', '.')
             ]
 
             payment_sql = "INSERT INTO wine_shop.payment (payment_date, customer_id, amount) VALUES (%s, %s, %s)"
@@ -239,7 +240,11 @@ try:
                 ('1', '3', '4', '252'),
                 ('2', '5', '9', '454'),
                 ('3', '2', '2', '584'),
-                ('4', '6', '98', '58')
+                ('4', '6', '98', '58'),
+                ('5', '5', '9', '81'),
+                ('4', '5', '1', '230'),
+                ('1', '1', '1', '100'),
+                ('7', '1', '45', '150')
             ]
 
             wine_grape_varieties_sql = "INSERT INTO wine_shop.wine_grape_varieties (wine_id, variety_id, percent) VALUES (%s, %s, %s)"
@@ -322,6 +327,7 @@ try:
                 ('8', '5')
             ]
 
+            cursor.executemany(collection_sql, collection_val)
             cursor.executemany(customer_sql, customer_val)
             cursor.executemany(grape_varieties_sql, grape_varieties_val)
             cursor.executemany(wine_store_sql, wine_store_val)
